@@ -1,0 +1,24 @@
+{
+  "name": "node-word-guess-oop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glaracuente/node-word-guess-oop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "",
+    "prompt": ""
+  },
+  "bugs": {
+    "url": "https://github.com/glaracuente/node-word-guess-oop/issues"
+  },
+  "homepage": "https://github.com/glaracuente/node-word-guess-oop#readme"
+}
