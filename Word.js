@@ -21,9 +21,15 @@ var Word = function (word) {
     }
 
     this.makeAGuess = function (char) {
+        var guessBooleanKeeper = false;
+
         for (var i = 0; i < this.letterArray.length; i++) {
-            this.letterArray[i].testChar(char);
-        }
+            if (this.letterArray[i].testChar(char)) {
+                guessBooleanKeeper = true;
+            }
+        } 
+
+        return guessBooleanKeeper;
     }
 
 

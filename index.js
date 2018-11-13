@@ -6,6 +6,7 @@ var inquirer = require("inquirer");
 var playWords = ["BAD BUNNY", "DADDY YANKEE", "DON OMAR", "OZUNA", "PLAN B", "NICKY JAM"];
 shuffle(playWords);
 var currentWord;
+var numOfGuesses;
 
 // This function to shuffle array was taken from https://www.kirupa.com/html5/shuffling_array_js.htm
 function shuffle(array) {
@@ -19,19 +20,21 @@ function shuffle(array) {
 }
 
 var newWord = function () {
-    currentWord = new Word(playWords.pop())
+    currentWord = new Word(playWords.pop());
+    numOfGuesses = 10;
 }
 
 var startGame = function () {
     newWord();
-
     guessLetters()
 }
 
 var guessLetters = function () {
     console.log(currentWord.getWordAsString());
+    console.log(numOfGuesses + " guesses left.");
 
-    if (currentWord.getWordAsString().indexOf("_") > -1) {
+
+    if (currentWord.getWordAsString().indexOf("_") > -1 && numOfGuesses > 0) {
         inquirer.prompt([
             {
                 type: "input",
@@ -40,16 +43,27 @@ var guessLetters = function () {
             }
 
         ]).then(function (guess) {
-            currentWord.makeAGuess(guess.letter)
+            if (currentWord.makeAGuess(guess.letter)) {
+                console.log("Correct!")
+            }
+            else {
+                numOfGuesses--
+            }
             guessLetters()
         });
     }
     else {
-        console.log("done")
+        if (numOfGuesses === 0) {
+            console.log("Out of Guesses")
+        }
+        else {
+            console.log("Guessed the full word!")
+        }
     }
 }
 
 startGame()
+//HAVE TO IMPLEMENT "YOU ALREADY ENTERED THAT FEATURE"
 
 
 
