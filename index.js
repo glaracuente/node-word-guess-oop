@@ -1,8 +1,7 @@
 var Word = require("./Word");
 var inquirer = require("inquirer");
 
-
-
+var divider = "\n<---------------------------->\n"
 var playWords = ["BAD BUNNY", "DADDY YANKEE", "DON OMAR", "OZUNA", "PLAN B", "NICKY JAM"];
 shuffle(playWords);
 var currentWord;
@@ -32,8 +31,8 @@ var startRound = function () {
 }
 
 var guessLetters = function () {
-    console.log(currentWord.getWordAsString());
-    console.log(numOfGuesses + " guesses left.");
+    console.log(currentWord.getWordAsString() + "\n");
+    console.log(numOfGuesses + " guesses left.\n\n");
 
 
     if (currentWord.getWordAsString().indexOf("_") > -1 && numOfGuesses > 0) {
@@ -46,13 +45,13 @@ var guessLetters = function () {
 
         ]).then(function (guess) {
             if (oldGuesses.indexOf(guess.letter) > -1) {
-                console.log("You already guessed that letter!")
+                console.log("You already guessed that letter!" + divider) 
             }
             else {
                 oldGuesses.push(guess.letter)
 
                 if (currentWord.makeAGuess(guess.letter)) {
-                    console.log("Correct!")
+                    console.log(guess.letter + " is Correct!" + divider)
                 }
                 else {
                     numOfGuesses--
@@ -64,17 +63,18 @@ var guessLetters = function () {
     }
     else {
         if (numOfGuesses === 0) {
-            console.log("Out of Guesses")
+            console.log("Out of Guesses" + divider)
             startRound()
         }
         else {
-            console.log("Guessed the full word!")
+            console.log("Guessed the full word!" + divider)
             startRound()
         }
     }
 }
 
 startRound()
+//NEED TO ADD LOGIC FOR CORRECT LETTER OR WRONG GUESS
 //SPACING (UI)
 //WINS AND LOSSES TOTAL
 //README

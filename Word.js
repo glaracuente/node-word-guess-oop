@@ -14,25 +14,18 @@ var Word = function (word) {
 
         for (var i = 0; i < this.letterArray.length; i++) {
             var tempLetter = this.letterArray[i].getChar();
-            wordAsString= wordAsString + " ";
-            wordAsString= wordAsString + tempLetter;
+            wordAsString = wordAsString + " ";
+            wordAsString = wordAsString + tempLetter;
         }
 
         return wordAsString;
     }
 
     this.makeAGuess = function (char) {
-        var guessBooleanKeeper = false;
-
         for (var i = 0; i < this.letterArray.length; i++) {
-            if (this.letterArray[i].testChar(char)) {
-                guessBooleanKeeper = true;
-            }
-        } 
-
-        return guessBooleanKeeper;
+            this.letterArray[i].testChar(char)
+        }
     }
-
 };
 
 module.exports = Word;
