@@ -5,6 +5,7 @@ var Word = function (word) {
 
     for (var i = 0; i < word.length; i++) {
         var tempLetter = new Letter(word[i]);
+        tempLetter.testChar(" ");
         this.letterArray.push(tempLetter);
     }
 
@@ -31,8 +32,6 @@ var Word = function (word) {
 
         return guessBooleanKeeper;
     }
-
-
 
 };
 

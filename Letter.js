@@ -12,7 +12,6 @@ var Letter = function (char) {
     };
 
     this.testChar = function (char) {
-        this.guessed = false
         if (char.toLowerCase() === this.charValue.toLowerCase()) {
             this.guessed = true;
         }

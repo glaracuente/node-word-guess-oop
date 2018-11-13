@@ -7,6 +7,7 @@ var playWords = ["BAD BUNNY", "DADDY YANKEE", "DON OMAR", "OZUNA", "PLAN B", "NI
 shuffle(playWords);
 var currentWord;
 var numOfGuesses;
+var oldGuesses;
 
 // This function to shuffle array was taken from https://www.kirupa.com/html5/shuffling_array_js.htm
 function shuffle(array) {
@@ -22,9 +23,10 @@ function shuffle(array) {
 var newWord = function () {
     currentWord = new Word(playWords.pop());
     numOfGuesses = 10;
+    oldGuesses = [];
 }
 
-var startGame = function () {
+var startRound = function () {
     newWord();
     guessLetters()
 }
@@ -43,28 +45,39 @@ var guessLetters = function () {
             }
 
         ]).then(function (guess) {
-            if (currentWord.makeAGuess(guess.letter)) {
-                console.log("Correct!")
+            if (oldGuesses.indexOf(guess.letter) > -1) {
+                console.log("You already guessed that letter!")
             }
             else {
-                numOfGuesses--
+                oldGuesses.push(guess.letter)
+
+                if (currentWord.makeAGuess(guess.letter)) {
+                    console.log("Correct!")
+                }
+                else {
+                    numOfGuesses--
+                }
             }
+
             guessLetters()
         });
     }
     else {
         if (numOfGuesses === 0) {
             console.log("Out of Guesses")
+            startRound()
         }
         else {
             console.log("Guessed the full word!")
+            startRound()
         }
     }
 }
 
-startGame()
-//HAVE TO IMPLEMENT "YOU ALREADY ENTERED THAT FEATURE"
-
-
+startRound()
+//SPACING (UI)
+//WINS AND LOSSES TOTAL
+//README
+//ADD TO PORTFOLIO
 
 
