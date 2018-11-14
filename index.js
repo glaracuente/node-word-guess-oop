@@ -49,11 +49,13 @@ var guessLetters = function () {
             }
             else {
                 oldGuesses.push(guess.letter)
+                currentWord.makeAGuess(guess.letter)
 
-                if (currentWord.makeAGuess(guess.letter)) {
-                    console.log(guess.letter + " is Correct!" + divider)
+                if (currentWord.getWordAsString().toLowerCase().indexOf(guess.letter.toLowerCase()) > -1) {
+                    console.log("\n" + guess.letter + " is Correct!" + divider)
                 }
                 else {
+                    console.log("\nbad guess!" + divider)
                     numOfGuesses--
                 }
             }
@@ -73,11 +75,12 @@ var guessLetters = function () {
     }
 }
 
+console.log("NAME OF GAME: WELCOME")
 startRound()
-//NEED TO ADD LOGIC FOR CORRECT LETTER OR WRONG GUESS
-//SPACING (UI)
-//WINS AND LOSSES TOTAL
+//DIFF WORDS
+//CLEAN CODE
 //README
 //ADD TO PORTFOLIO
+
 
 
