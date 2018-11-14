@@ -1,4 +1,4 @@
-This is a node.js word guess game. The subject to guess are New Jersey Cities. 
+This is a node.js word guess game. The subject to guess are New Jersey cities. 
 
 >Gameplay:
 ```
