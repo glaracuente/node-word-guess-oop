@@ -9,7 +9,7 @@ var Word = function (word) {
         this.letterArray.push(tempLetter);
     }
 
-    this.getWordAsString = function () {
+    this.getWord = function () {
         var wordAsString = "";
 
         for (var i = 0; i < this.letterArray.length; i++) {

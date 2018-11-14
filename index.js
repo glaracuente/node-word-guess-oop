@@ -1,14 +1,13 @@
 var Word = require("./Word");
 var inquirer = require("inquirer");
 
-var divider = "\n<---------------------------->\n"
 var playWords = ["Newark", "Paterson", "New Brunswick", "Jersey City", "Belleville", "Bloomfield", "Asbury Park" , "Nutley" , "Montclair" , "Cranford" , "Elizabeth" , "Passaic" ];
 shuffle(playWords);
+var divider = "\n<---------------------------->\n"
 var currentWord;
 var numOfGuesses;
 var oldGuesses;
 
-// This function to shuffle array was taken from https://www.kirupa.com/html5/shuffling_array_js.htm
 function shuffle(array) {
     for (var i = array.length - 1; i >= 0; i--) {
         var randomIndex = Math.floor(Math.random() * (i + 1));
@@ -25,17 +24,11 @@ var newWord = function () {
     oldGuesses = [];
 }
 
-var startRound = function () {
-    newWord();
-    guessLetters()
-}
-
 var guessLetters = function () {
-    console.log(currentWord.getWordAsString() + "\n");
+    console.log(currentWord.getWord() + "\n");
     console.log(numOfGuesses + " guesses left.\n\n");
 
-
-    if (currentWord.getWordAsString().indexOf("_") > -1 && numOfGuesses > 0) {
+    if (currentWord.getWord().indexOf("_") > -1 && numOfGuesses > 0) {
         inquirer.prompt([
             {
                 type: "input",
@@ -45,13 +38,13 @@ var guessLetters = function () {
 
         ]).then(function (guess) {
             if (oldGuesses.indexOf(guess.letter) > -1) {
-                console.log("You already guessed that letter!" + divider) 
+                console.log("You already guessed that letter!" + divider)
             }
             else {
                 oldGuesses.push(guess.letter)
                 currentWord.makeAGuess(guess.letter)
 
-                if (currentWord.getWordAsString().toLowerCase().indexOf(guess.letter.toLowerCase()) > -1) {
+                if (currentWord.getWord().toLowerCase().indexOf(guess.letter.toLowerCase()) > -1) {
                     console.log("\n" + guess.letter + " is Correct!" + divider)
                 }
                 else {
@@ -65,21 +58,28 @@ var guessLetters = function () {
     }
     else {
         if (numOfGuesses === 0) {
-            console.log("Out of Guesses" + divider)
+            console.log("Out of Guesses ...new word on the way..." + divider)
             startRound()
         }
         else {
-            console.log("Guessed the full word!" + divider)
+            console.log("Guessed the full word! ...new word on the way..." + divider)
             startRound()
         }
     }
 }
 
+var startRound = function () {
+    if (playWords.length === 0) {
+        console.log("Game over! No more words left.")
+    }
+    else {
+        newWord();
+        guessLetters()
+    }
+}
+
 console.log("Word Guess: New Jersey Cities" + divider)
 startRound()
-//CLEAN CODE
-//README
-//ADD TO PORTFOLIO
 
 
 
