@@ -2,7 +2,7 @@ var Word = require("./Word");
 var inquirer = require("inquirer");
 
 var divider = "\n<---------------------------->\n"
-var playWords = ["BAD BUNNY", "DADDY YANKEE", "DON OMAR", "OZUNA", "PLAN B", "NICKY JAM"];
+var playWords = ["Newark", "Paterson", "New Brunswick", "Jersey City", "Belleville", "Bloomfield", "Asbury Park" , "Nutley" , "Montclair" , "Cranford" , "Elizabeth" , "Passaic" ];
 shuffle(playWords);
 var currentWord;
 var numOfGuesses;
@@ -75,9 +75,8 @@ var guessLetters = function () {
     }
 }
 
-console.log("NAME OF GAME: WELCOME")
+console.log("Word Guess: New Jersey Cities" + divider)
 startRound()
-//DIFF WORDS
 //CLEAN CODE
 //README
 //ADD TO PORTFOLIO
